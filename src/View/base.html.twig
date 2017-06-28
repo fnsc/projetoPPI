@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} - PetCare</title>
+        <meta charset="utf-8">
+        <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../lib/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header>
+            {% if user == null %}
+                <div class="container">
+                    <a href="/">
+                        <img id="logotipo" src="img/petcare_logo.png" alt="Logo - Home" >
+                    </a>
+                </div><!-- /container -->
+                <div class="header-black">
+                    <div class="container">
+
+                        <form class="form-inline" id="formLogin">
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="login">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="senha" id="senha" class="form-control" placeholder="senha">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Login</button>
+                            </div>
+                        </form>
+
+                        <div id="erro">
+                            <h5 style="color:red;">Usuário ou senha inválidos!</h5>
+                        </div>
+
+                    </div><!-- /container -->
+                </div><!-- /header-black -->
+
+                <div class="container">
+                    <div class="row">
+                        <nav id="menu" class="pull-right">
+                            <ul>
+                                <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true" ></span> Home</a></li>
+                                <li><a href="/form_cadastro_usuario"><i class="fa fa-hand-spock-o" aria-hidden="true"></i> Cadastrar</a></li>
+                                <li><a href="#"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Notícias</a></li>
+                                <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Ajuda</a></li>
+                                <li class="search">
+                                    <div class="input-group">
+                                        <input type="search" placeholder="pesquisa...">
+                                        <span class="input-group-btn">
+                                            <button type="button"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </li>
+                            </ul>
+                        </nav>
+                    </div><!-- /row -->
+                </div><!-- /container -->
+
+            {% else %}
+                <div class="container">
+                    <a href="/">
+                        <img id="logotipo" src="../img/petcare_logo.png" alt="Logo - Home" >
+                    </a>
+                </div><!-- /container -->
+                <div class="header-black">
+                    <div id="btn" class="container">
+                        <div class="dropdown">
+                            <button class="btn btn-info btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" id="drop" aria-expanded="true">
+                                {{user.email | upper}}  <span class="caret" aria-hidden="true" ></span>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="drop" >
+                                <li role="presentation"><a role="menu-item"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> PERFIL</a></li>
+                                <li role="presentation"><a role="menu-item" href="/show_form_editar_usuario"h><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span> Editar Perfil</a></li>
+                                <li role="presentation"><a data-toggle="modal" href="#" data-target="#myModal"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ></span> Apagar Conta</a></li>
+                                <li class="divider"></li>
+                                <li role="presentation"><a role="menu-item"><span class="glyphicon glyphicon-wrench" aria-hidden="true" ></span> PAINEL DE CONTROLE</a></li>
+                                <li role="presentation"><a role="menu-item" href="/show_painel_interno"><span class="glyphicon glyphicon-cog" aria-hidden="true" ></span> Painel Interno</a></li>
+                                <li role="presentation"><a role="menu-item" href="/form_cadastro_pet"><span class="glyphicon glyphicon-plus" aria-hidden="true" ></span> Adicionar Pet</a></li>
+                                <li role="presentation"><a role="menu-item" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true" ></span> Home</a></li>
+                                <li class="divider"></li>
+                                <li role="presentation"><a role="menu-item" href="/sair_usuario"><span class="glyphicon glyphicon-off" aria-hidden="true" ></span> SAIR</a></li>
+                            </ul>
+
+                        </div><!--</div>-->
+                    </div><!--</div>-->
+                </div><!-- /header-black -->      
+                <div class="container">
+                    <div class="row">
+                        <nav id="menu" class="pull-right">
+                            <ul>
+                                <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true" ></span> Home</a></li>
+                                <li><a role="menu-item" href="/show_painel_interno"><span class="glyphicon glyphicon-cog" aria-hidden="true" ></span> Painel Interno</a></li>
+                                <li><a role="menu-item" href="/form_cadastro_pet"><span class="glyphicon glyphicon-plus" aria-hidden="true" ></span> Adicionar Pet</a></li>
+                                <li role="presentation"><a role="menu-item" href="/sair_usuario"><span class="glyphicon glyphicon-off" aria-hidden="true" ></span> SAIR</a></li>
+                                <li class="search">
+                                    <div class="input-group">
+                                        <input type="search" placeholder="pesquisa...">
+                                        <span class="input-group-btn">
+                                            <button type="button"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </li>
+                            </ul>
+                        </nav>
+                    </div><!-- /row -->
+                </div><!-- /container -->        
+            {% endif %}
+        </header>
+        <section>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">⚠️ CONFIRMAÇÃO ⚠️</h4>
+                        </div>
+                        <div class="modal-body container">
+                            <p>😱 DESEJA REALMENTE APAGAR A SUA CONTA? 😱</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Claro que não! 😅</button>
+                            <a href="/apagar_usuario"><button type="button" class="btn btn-danger">SIM 😭</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim Modal -->
+        {% block body %}{% endblock %}
+    </section>
+    <footer>
+        {{ include('footer.html.twig') }}
+    </footer>
+
+    <script src="../lib/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="../lib/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../js/function.js" type="text/javascript"></script>
+</body>
+</html>

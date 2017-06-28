@@ -1,0 +1,16 @@
+{
+    "name": "Meu Projeto",
+    "description" : "Projeto de PPI 2",
+    "require" : {
+        "php" : ">=5.6",
+        "filp/whoops": "dev-master",
+        "symfony/http-foundation": "^3.2",
+        "symfony/routing": "^3.2",
+        "twig/twig": "dev-master"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "MeuProjeto\\" : "src/"
+        }
+    }
+}

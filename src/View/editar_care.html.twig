@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Evento de {{care.nome}} {% endblock %}
+{% block body %}
+    <div id="call-to-action">
+        <div class="container">
+            <div class="row text-center">
+                <h2>EDITAR EVENTO DE {{care.nome|e}}</h2>
+                <hr>
+                <br>
+            </div><!-- /row /text-center-->
+            <div class="text-center">
+                <div class="row row-max-400">
+                    <form class="form-horizontal" action="/editar_care/{{care.idCare}}" method="POST">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Tipo</label>
+                            <div class="col-sm-10">
+                                <input name="tipo" type="text" class="form-control" placeholder="" id="tipo" value="{{care.tipo}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Data</label>
+                            <div class="col-sm-10">
+                                <input name="data" type="date" required ="" pattern="\d{2}/\d{2}/\d{4}" class="form-control" placeholder="ANO/MES/DIA" id="data" value="{{care.data}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Descrição</label>
+                            <div class="col-sm-10">
+                                <input name="descricao" type="text" class="form-control" placeholder="" id="descricao" value="{{care.descricao}}">
+                            </div>
+                        </div>
+
+                        <input name="idPet" type="hidden" class="form-control" placeholder="Border Collie" id="descricao" value="{{care.idPet}}">
+                            
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Atualizar</button>
+                            </div>
+                        </div>
+                    </form><!-- formEdicao -->
+                </div><!-- /row /row-max-400 -->
+            </div><!-- /text-center -->
+        </div><!-- /container -->
+    </div><!-- /call-to-action -->
+{% endblock %}
+
